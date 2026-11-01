@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# 가상환경
+.venv/
+venv/
+
+# 개발 도구
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# IDE / 운영체제
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+
+# 로컬 데이터
+*.log
+*.sqlite3
+*.db

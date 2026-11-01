@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "multimodal-translator"
+version = "0.1.0"
+description = "Context-aware translation overlay for games and video content on Windows."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "PySide6>=6.6",
+    "mss>=10.2",
+]
+
+[project.optional-dependencies]
+# PaddleOCR (CPU). paddlepaddle 3.3.x는 CPU 가속(oneDNN) 오류가 있어 3.2.x로 고정한다 (2026-10-12 확인).
+ocr = [
+    "paddleocr>=3.7,<4",
+    "paddlepaddle>=3.2.2,<3.3",
+]
+# PaddleOCR (NVIDIA GPU, CUDA 12.9). PyPI에 없으므로 Paddle 공식 인덱스가 필요하다 (README 참고).
+# `ocr`과 함께 설치하지 않는다 (같은 paddle 모듈을 제공한다).
+ocr-gpu = [
+    "paddleocr>=3.7,<4",
+    "paddlepaddle-gpu>=3.2.2,<3.3",
+]
+dev = [
+    "pytest>=8.0",
+    "pytest-qt>=4.4",
+]
+
+[project.scripts]
+multimodal-translator = "translator.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
